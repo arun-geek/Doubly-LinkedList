@@ -7,6 +7,14 @@ void display();
 void deleteint(int x);
 void reversel();
 int searchint(int x);
+int compare_fn(int a,int b)
+{
+    if(a>b)
+        return 1;
+    else if(b>a)
+        return -1;
+}
+int compare_no=1;
 struct node
 {
 int data;
@@ -49,7 +57,7 @@ int count=0;
 node *searchele=top;
 while( searchele!=NULL)
 {
-    if(searchele->data < x )
+    if(compare_fn(x,searchele->data)==compare_no)
     {
         searchele=searchele->next;
     count+=1;
@@ -68,7 +76,7 @@ int insertdata(int x)
         top->next=NULL;
         top->prev=NULL;
     }
-    else if(top->data > x)
+    else if(compare_fn(top->data ,x)==compare_no)
     {
         node *n=new node;
         n->data=x;
@@ -170,4 +178,5 @@ while(a!=NULL)
 top=d;
 cout<<"After Reversing the linked list";
 display();
+compare_no*=-1;
 }
